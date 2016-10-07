@@ -5,17 +5,16 @@ CURRENT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 source "$CURRENT_DIR/helpers.sh"
 
 # script global variables
-cpu_icon=""
-
-cpu_default="❏ "
+vpn_connected_icon=""
+vpn_connected_default=" "
 
 # icons are set as script global variables
 get_icon_settings() {
-	cpu_icon=$(get_tmux_option "@cpu_icon" "$cpu_default")
+	vpn_icon=$(get_tmux_option "@vpn_connected_icon" "$vpn_connected_default")
 }
 
 main() {
 	get_icon_settings
-	printf "$cpu_icon"
+	printf "$vpn_connected_icon"
 }
 main

@@ -9,35 +9,6 @@ get_tmux_option() {
 	fi
 }
 
-is_osx() {
-	[ $(uname) == "Darwin" ]
-}
-
-is_freebsd() {
-	[ $(uname) == "FreeBSD" ]
-}
-
-is_linux() {
-	[ $(uname) == "Linux" ]
-}
-
-is_cygwin() {
-	command -v WMIC &> /dev/null
-}
-
-is_linux_iostat() {
-	# Bug in early versions of linux iostat -V return error code
-	iostat -c &> /dev/null
-}
-
-cpus_number() {
-	if is_linux; then
-		nproc
-	else
-		sysctl -n hw.ncpu
-	fi
-}
-
 command_exists() {
 	local command="$1"
 	command -v "$command" &> /dev/null

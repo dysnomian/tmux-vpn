@@ -4,10 +4,10 @@ CURRENT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 source "$CURRENT_DIR/scripts/helpers.sh"
 
-cpu_percentage="#($CURRENT_DIR/scripts/cpu_percentage.sh)"
-cpu_icon="#($CURRENT_DIR/scripts/cpu_icon.sh)"
-cpu_percentage_interpolation="\#{cpu_percentage}"
-cpu_icon_interpolation="\#{cpu_icon}"
+vpn_status="#($CURRENT_DIR/scripts/vpn_status.sh)"
+vpn_connected_icon="#($CURRENT_DIR/scripts/vpn_icon.sh)"
+vpn_status_interpolation="\#{vpn_status}"
+vpn_connected_icon_interpolation="\#{vpn_connected_icon}"
 
 set_tmux_option() {
 	local option=$1
@@ -17,8 +17,8 @@ set_tmux_option() {
 
 do_interpolation() {
 	local string=$1
-	local percentage_interpolated=${string/$cpu_percentage_interpolation/$cpu_percentage}
-	local all_interpolated=${percentage_interpolated/$cpu_icon_interpolation/$cpu_icon}
+	local vpn_status_interpolated=${string/$vpn_status_interpolation/$vpn_status}
+	local all_interpolated=${vpn_status_interpolated/$vpn_connected_icon_interpolation/$vpn_connected_icon}
 	echo $all_interpolated
 }
 
